@@ -64,7 +64,7 @@ app.post("/webhook", async (req, res) => {
       }
 
       // First time this person messaged → send welcome
-      if (msg.message && !welcomed.has(senderId)) {
+      if (msg.message && !msg.message.is_echo && !welcomed.has(senderId)) {
         console.log(`📲 First message from ${senderId} — sending welcome`);
         await sendWelcomeMessage(senderId);
         welcomed.add(senderId);
